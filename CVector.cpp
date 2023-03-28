@@ -60,6 +60,11 @@ void CVector::setNewCoordinate(double valueNewCoordinate)
 	}
 }
 
+string CVector::getOutFileName() const
+{
+    return outFileName;
+}
+
 int CVector::getMaxSizeVector() const
 {
 	return maxSizeVector;

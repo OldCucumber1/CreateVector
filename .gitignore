@@ -1,0 +1,8 @@
+
+CMakeCache.txt
+
+*.cmake
+
+CMakeFiles/cmake.check_cache
+
+*.o

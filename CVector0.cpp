@@ -3,6 +3,11 @@
 
 
 
+CVector0::CVector0(const CVector1 &anotherVector)
+{
+    *this = anotherVector;
+}
+
 CVector0 CVector0::operator+(const CVector0& anotherVector)
 {
 	if (currentSizeVector != anotherVector.currentSizeVector || vectorPtr == nullptr || anotherVector.vectorPtr == nullptr)
@@ -72,6 +77,31 @@ CVector0 CVector0::operator-(const CVector1& anotherVector)
 	}
 }
 
+CVector0& CVector0::operator=(const CVector1& anotherVector)
+{
+    if (vectorPtr != nullptr)
+    {
+        delete[] vectorPtr;
+    }
+    outFileName = anotherVector.getOutFileName();
+    maxSizeVector = anotherVector.getMaxSizeVector();
+    currentSizeVector = anotherVector.getCurrentSizeVector();
+    currentSizeVector = 0;
+    if (anotherVector.getVectorPtr() == nullptr)
+    {
+        vectorPtr = nullptr;
+    }
+    else
+    {
+        vectorPtr = new double[maxSizeVector];
+        for (int i = 0; i < currentSizeVector; ++i)
+        {
+            vectorPtr[i] = anotherVector.getVectorPtr()[i];
+        }
+    }
+    return *this;
+}
+
 int CVector0::output(string fileName)
 {
 	if (fileName == "")
@@ -79,7 +109,7 @@ int CVector0::output(string fileName)
 		fileName = outFileName;
 	}
 	ofstream outFile;
-	outFile.open(fileName);
+    outFile.open(fileName, std::ios::app);
 	if (!outFile.is_open())
 	{
 		return 1;
@@ -88,6 +118,6 @@ int CVector0::output(string fileName)
 	{
 		outFile << vectorPtr[i] << " ";
 	}
-	outFile.close();
+    outFile << endl;
 	return 0;
 }

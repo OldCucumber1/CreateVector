@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,17 +11,25 @@ class CVector
 {
 protected:
 	string outFileName;
+
 	int maxSizeVector;
+
 	int currentSizeVector;
+
 	double* vectorPtr;
+
 public:
 	CVector();
+
 	CVector(const CVector& val);
+
 	virtual ~CVector();
 
 	void setOutFileName(const string& FileName);
 
 	void setNewCoordinate(double valueNewCoordinate);
+
+    string getOutFileName() const;
 	
 	int getMaxSizeVector() const;
 
